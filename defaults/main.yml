@@ -1,0 +1,6 @@
+---
+cluster_name: "logs"
+transport_tcp_compress: "true"
+http_enabled: "true"
+http_cors_allow_origin: "*"
+http_cors_enabled: "true"
