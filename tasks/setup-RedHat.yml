@@ -12,3 +12,14 @@
 
 - name: Install Elasticsearch.
   yum: pkg=elasticsearch state=installed
+
+- name: Configure Elasticsearch Sysconfig.
+  lineinfile: >
+    dest=/etc/sysconfig/elasticsearch
+    regexp="{{ item.regexp }}"
+    line="{{ item.line }}"
+    state=present
+  with_items:
+    - { regexp: '^DATA_DIR', line: 'DATA_DIR={{ path_data }}' }
+    - { regexp: '^WORK_DIR', line: 'WORK_DIR={{ path_work }}' }
+    - { regexp: '^LOG_DIR', line: 'LOG_DIR={{ path_logs }}' }

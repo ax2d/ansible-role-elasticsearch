@@ -2,5 +2,9 @@
 cluster_name: "logs"
 transport_tcp_compress: "true"
 http_enabled: "true"
-http_cors_allow_origin: "*"
+http_cors_allow_origin: "http://"
 http_cors_enabled: "true"
+
+path_data: "/data11/es-index"
+path_work: "/data12/es-work"
+path_logs: "/data11/es-logs"

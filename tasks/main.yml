@@ -5,6 +5,15 @@
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
+- name: Ensure data folder exists
+  file: path={{ path_data }} owner=elasticsearch group=elasticsearch state=directory
+
+- name: Ensure work folder exists
+  file: path={{ path_work }} owner=elasticsearch group=elasticsearch state=directory
+
+- name: Ensure logs folder exists
+  file: path={{ path_logs }} owner=elasticsearch group=elasticsearch state=directory
+
 - name: Configure Elasticsearch.
   lineinfile: >
     dest=/etc/elasticsearch/elasticsearch.yml
@@ -18,7 +27,7 @@
     - { regexp: '^script\.disable_dynamic', line: 'script.disable_dynamic: true' }
     - { regexp: 'network\.host', line: 'network.host: {{ ansible_hostname }}' }
     - { regexp: 'http\.cors\.enabled', line: 'http.cors.enabled: {{ http_cors_enabled }}' }
-    #- { regexp: 'http\.cors\.allow-origin', line: 'http.cors.allow-origin: {{ http_cors_allow_origin }}' }
+    - { regexp: 'http\.cors\.allow-origin', line: 'http.cors.allow-origin: {{ http_cors_allow_origin }}' }
   notify: restart elasticsearch
 
 - name: Start Elasticsearch.
