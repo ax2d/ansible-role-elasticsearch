@@ -20,6 +20,7 @@
     line="{{ item.line }}"
     state=present
   with_items:
-    - { regexp: '^DATA_DIR', line: 'DATA_DIR={{ path_data }}' }
-    - { regexp: '^WORK_DIR', line: 'WORK_DIR={{ path_work }}' }
-    - { regexp: '^LOG_DIR', line: 'LOG_DIR={{ path_logs }}' }
+    - { regexp: '.*DATA_DIR', line: 'DATA_DIR={{ es_path_data }}' }
+    - { regexp: '.*WORK_DIR', line: 'WORK_DIR={{ es_path_work }}' }
+    - { regexp: '.*LOG_DIR', line: 'LOG_DIR={{ es_path_logs }}' }
+    - { regexp: '.*ES_HEAP_SIZE', line: 'ES_HEAP_SIZE={{ es_heap_size }}' }
