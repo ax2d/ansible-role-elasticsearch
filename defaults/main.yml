@@ -1,6 +1,6 @@
 ---
 es_heap_size: "10g"
-es_cluster_name: "gondola-logs"
+es_cluster_name: "logs"
 es_transport_tcp_compress: "true"
 es_http_enabled: "true"
 es_http_cors_allow_origin: "http://"
