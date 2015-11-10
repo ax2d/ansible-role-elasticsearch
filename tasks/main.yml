@@ -23,6 +23,7 @@
   with_items:
     - { regexp: '.*cluster\.name', line: 'cluster.name: {{ es_cluster_name }}' }
     - { regexp: '.*transport\.tcp\.compress', line: 'transport.tcp.compress: {{ es_transport_tcp_compress }}' }
+    - { regexp: '.*http\.jsonp.enable', line: 'http.jsonp.enable: {{ es_jsonp_enable }}' }
     - { regexp: '.*http\.enabled', line: 'http.enabled: {{ es_http_enabled }}' }
     - { regexp: '.*script\.disable_dynamic', line: 'script.disable_dynamic: true' }
     - { regexp: '.*network\.bind_host', line: "network.bind_host: {{ hostvars[ansible_hostname]['ansible_em1']['ipv4']['address'] }}" }
