@@ -1,10 +1,29 @@
 ---
 es_heap_size: "10g"
 es_cluster_name: "logs"
+es_node_name: "node-1"
+es_node_master: "true"
+
+#the correct configuration for this value is
+#1 more than half the total number of master-eligible nodes in the cluster
+es_discovery_zen_minimum_master_nodes: "2"
+
+#enable recovery process after 1 nodes in a cluster is up
+es_gateway_recover_after_nodes: "1"
+
+# Set the timeout to initiate the recovery process, once the 1 node
+# from previous setting is up
+es_gateway_recover_after_time: "5m"
+
+# Set how many nodes are expected in this cluster. Once these 3 nodes
+# are up (and recover_after_nodes is met), begin recovery process immediately
+# (without waiting for recover_after_time to expire):
+es_gateway_expected_nodes: "3"
+
 es_transport_tcp_compress: "true"
 es_jsonp_enable: "true"
 es_http_enabled: "true"
-es_http_cors_allow_origin: "'*'"
+es_http_cors_allow_origin: "'/.*/'"
 es_http_cors_enabled: "true"
 
 es_path_data: "/data11/es-index"

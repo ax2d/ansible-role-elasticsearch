@@ -22,15 +22,20 @@
     state=present
   with_items:
     - { regexp: '.*cluster\.name', line: 'cluster.name: {{ es_cluster_name }}' }
+    - { regexp: '.*node\.name', line: 'node.name: {{es_node_name}}' }
+    - { regexp: '.*node\.master', line: 'node.master: {{ es_node_master }}' }
     - { regexp: '.*transport\.tcp\.compress', line: 'transport.tcp.compress: {{ es_transport_tcp_compress }}' }
     - { regexp: '.*http\.jsonp.enable', line: 'http.jsonp.enable: {{ es_jsonp_enable }}' }
     - { regexp: '.*http\.enabled', line: 'http.enabled: {{ es_http_enabled }}' }
     - { regexp: '.*script\.disable_dynamic', line: 'script.disable_dynamic: true' }
-    - { regexp: '.*network\.bind_host', line: "network.bind_host: {{ hostvars[ansible_hostname]['ansible_em1']['ipv4']['address'] }}" }
     - { regexp: '.*http\.cors\.enabled', line: 'http.cors.enabled: {{ es_http_cors_enabled }}' }
     - { regexp: '.*http\.cors\.allow-origin', line: 'http.cors.allow-origin: {{ es_http_cors_allow_origin }}' }
-    - { regexp: '.*discovery.zen.ping.multicast.enabled', line: 'discovery.zen.ping.multicast.enabled: false'}
-    - { regexp: '.*discovery.zen.ping.unicast.hosts', line: "discovery.zen.ping.unicast.hosts: [{{ \"', '\".join(groups.elasticsearch) }}]"}
+    - { regexp: '.*discovery\.zen\.ping\.multicast\.enabled', line: 'discovery.zen.ping.multicast.enabled: false'}
+    - { regexp: '.*discovery\.zen\.minimum_master_nodes', line: 'discovery.zen.minimum_master_nodes: {{ es_discovery_zen_minimum_master_nodes}}'}
+    - { regexp: '.*discovery\.zen\.ping\.unicast\.hosts', line: 'discovery.zen.ping.unicast.hosts: {{ groups.elasticsearch}}'}
+    - { regexp: '.*gateway\.expected_nodes', line: 'gateway.expected_nodes: {{ es_gateway_expected_nodes}}'}
+    - { regexp: '.*gateway\.recover_after_nodes', line: 'gateway.recover_after_nodes: {{ es_gateway_recover_after_nodes}}'}
+    - { regexp: '.*gateway\.recover_after_time', line: 'gateway.recover_after_time: {{ es_gateway_recover_after_time}}'}
   notify: restart elasticsearch
 
 - name: Start Elasticsearch.
