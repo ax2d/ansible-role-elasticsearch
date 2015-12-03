@@ -28,7 +28,6 @@
     - { regexp: '.*http\.jsonp.enable', line: 'http.jsonp.enable: {{ es_jsonp_enable }}' }
     - { regexp: '.*http\.enabled', line: 'http.enabled: {{ es_http_enabled }}' }
     - { regexp: '.*script\.disable_dynamic', line: 'script.disable_dynamic: true' }
-    - { regexp: '.*network\.bind_host', line: "network.bind_host: {{ hostvars[ansible_hostname]['ansible_em1']['ipv4']['address'] }}" }
     - { regexp: '.*http\.cors\.enabled', line: 'http.cors.enabled: {{ es_http_cors_enabled }}' }
     - { regexp: '.*http\.cors\.allow-origin', line: 'http.cors.allow-origin: {{ es_http_cors_allow_origin }}' }
     - { regexp: '.*discovery\.zen\.ping\.multicast\.enabled', line: 'discovery.zen.ping.multicast.enabled: false'}
