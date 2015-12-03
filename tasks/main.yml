@@ -24,6 +24,7 @@
     - { regexp: '.*cluster\.name', line: 'cluster.name: {{ es_cluster_name }}' }
     - { regexp: '.*node\.name', line: 'node.name: {{ inventory_hostname }}' }
     - { regexp: '.*node\.master', line: 'node.master: true' }
+    - { regexp: '.*network\.bind_host', line: "network.bind_host: 0.0.0.0" }
     - { regexp: '.*transport\.tcp\.compress', line: 'transport.tcp.compress: {{ es_transport_tcp_compress }}' }
     - { regexp: '.*http\.jsonp.enable', line: 'http.jsonp.enable: {{ es_jsonp_enable }}' }
     - { regexp: '.*http\.enabled', line: 'http.enabled: {{ es_http_enabled }}' }
